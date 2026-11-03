@@ -52,7 +52,9 @@ api/Public-Prompts-Pixel-Model.ckpt
 api/debug_sprite.png
 
 # ─── Heavy / Generated Documentation ─────────────
-docs/
+# Allow docs/ but ignore any auto-generated heavy files
+docs/**/*.pdf
+docs/**/*.html
 
 # ─── Node (if used) ──────────────────────────────
 node_modules/
