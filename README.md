@@ -155,11 +155,11 @@ Context-aware guidance panel with prompt tips, style suggestions, palette advice
 ### AI-Generated Samples
 
 <p align="center">
-  <img src="spritestack-pixelgen/docs/samples/knight_64.png" width="96" alt="Knight">
-  <img src="spritestack-pixelgen/docs/samples/dragon_64.png" width="96" alt="Dragon">
-  <img src="spritestack-pixelgen/docs/samples/wizard_64.png" width="96" alt="Wizard">
-  <img src="spritestack-pixelgen/docs/samples/treasure_64.png" width="96" alt="Treasure">
-  <img src="spritestack-pixelgen/docs/samples/skeleton_64.png" width="96" alt="Skeleton">
+  <img src="docs/screenshots/knight_64.png" width="96" alt="Knight">
+  <img src="docs/screenshots/dragon_64.png" width="96" alt="Dragon">
+  <img src="docs/screenshots/wizard_64.png" width="96" alt="Wizard">
+  <img src="docs/screenshots/treasure_64.png" width="96" alt="Treasure">
+  <img src="docs/screenshots/skeleton_64.png" width="96" alt="Skeleton">
 </p>
 <p align="center">
   <sub>Generated with the built-in AI sprite generator — <code>"knight with silver armor"</code> · <code>"red dragon breathing fire"</code> · <code>"wizard casting spell"</code> · <code>"golden treasure chest"</code> · <code>"skeleton warrior"</code></sub>
