@@ -176,7 +176,7 @@ Model weights and training pipelines are maintained in dedicated repositories:
 | **Pixel Art Diffusion** | Text-to-sprite generation pipeline | SD 1.5 LCM + PixelArt LoRA | [spritestack-pixelgen](https://github.com/Azjob21/spritestack-pixelgen) |
 | **NLP Scene Parser** | Text-to-scene placement | DistilBERT NER + Architect Transformer | *Separate repo* |
 | **Whisper STT** | Voice transcription | whisper-small-en (CTranslate2, int8) | *Separate repo* |
-| **Sprite Tweener** | Frame interpolation | RIFE-RGBA (TorchScript) | [spritestack-pixelgen](https://github.com/Azjob21/spritestack-tweener) |
+| **Sprite Tweener** | Frame interpolation | RIFE-RGBA (TorchScript) | [spritestack-tweener](https://github.com/Azjob21/spritestack-tweener) |
 
 > **Without models**, the Studio still runs fully — `fake_*` plugins provide procedural fallback responses for end-to-end UI development and testing.
 
