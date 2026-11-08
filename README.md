@@ -92,12 +92,14 @@ All AI runs **100% offline** via a local FastAPI server. No cloud, no API keys �
 Type a prompt, get a pixel-art sprite as a new layer.
 
 ```
-"knight with silver armor and sword"
+"red dragon" · "wizard with a staff" · "small green slime"
 ```
 
-Powered by **Stable Diffusion 1.5 LCM** + **PixelArt LoRA**, with post-processing for hard pixel grids and palette control.
+Powered by two local backends in [spritestack-pixelgen](https://github.com/Azjob21/spritestack-pixelgen):
+1. **Native 16×16 Flow-Matching Model (`fm16`)**: Custom 30.4M UNet trained from scratch for native 16×16 RGBA sprites. Generates in **sub-second latency (~0.78s on CPU)** with direct learned alpha.
+2. **Diffusion Pipeline (`s6`)**: Stable Diffusion 1.5 LCM + PixelArt LoRA + TAESD for 64×64 compositions.
 
-**Features:** Style presets, strength control, palette lock, multiple variations per prompt.
+**Features:** Sub-second generation, palette discipline (DB32 / PICO-8 / Endesga 32), seed control, transparent backgrounds, interactive playground.
 
 </td>
 </tr>
@@ -154,6 +156,20 @@ Context-aware guidance panel with prompt tips, style suggestions, palette advice
 
 ### AI-Generated Samples
 
+#### Native 16×16 Flow-Matching Model Showcase Sheet (`fm16` &mdash; Sub-Second CPU Generation)
+
+<p align="center">
+  <img src="docs/screenshots/fm16_showcase_sheet.png" width="800" alt="Native 16x16 Flow-Matching Sprite Sheet">
+</p>
+
+> [!IMPORTANT]
+> **Native 16×16 Resolution & Future Formats**:
+> - The new flow-matching model operates **strictly at native 16×16 resolution** with direct learned alpha transparency, generating in **~0.78s on CPU**. In the sprite sheet above, 12 diverse sprites (monsters, heroes, weapons, items) are pre-rendered at 6× nearest-neighbour resolution with dark checkerboard backdrops so every pixel edge and palette constraint remains crisp and sharp on web displays without browser blur.
+> - Larger output dimensions requested from `fm16` currently use nearest-neighbour integer upscaling without added detail.
+> - **Future work will include additional native formats**: training dedicated **native 32×32** and **native 64×64** models, multi-resolution flow matching, and cascaded super-resolution.
+
+#### Diffusion Baseline Gallery (`v0` &mdash; 64×64 via SD 1.5 LCM)
+
 <p align="center">
   <img src="docs/screenshots/knight_64.png" width="96" alt="Knight">
   <img src="docs/screenshots/dragon_64.png" width="96" alt="Dragon">
@@ -162,7 +178,7 @@ Context-aware guidance panel with prompt tips, style suggestions, palette advice
   <img src="docs/screenshots/skeleton_64.png" width="96" alt="Skeleton">
 </p>
 <p align="center">
-  <sub>Generated with the built-in AI sprite generator — <code>"knight with silver armor"</code> · <code>"red dragon breathing fire"</code> · <code>"wizard casting spell"</code> · <code>"golden treasure chest"</code> · <code>"skeleton warrior"</code></sub>
+  <sub>Generated with the SD 1.5 baseline pipeline (~96s on CPU) — <code>"knight with silver armor"</code> · <code>"red dragon breathing fire"</code> · <code>"wizard casting spell"</code> · <code>"golden treasure chest"</code> · <code>"skeleton warrior"</code></sub>
 </p>
 
 ---
@@ -173,7 +189,7 @@ Model weights and training pipelines are maintained in dedicated repositories:
 
 | Component | Description | Model | Repository |
 |---|---|---|---|
-| **Pixel Art Diffusion** | Text-to-sprite generation pipeline | SD 1.5 LCM + PixelArt LoRA | [spritestack-pixelgen](https://github.com/Azjob21/spritestack-pixelgen) |
+| **Pixel Art Generation** | Sub-second native 16×16 flow matching + SD 1.5 pipeline | 30.4M UNet (native 16×16) / SD 1.5 LCM | [spritestack-pixelgen](https://github.com/Azjob21/spritestack-pixelgen) |
 | **NLP Scene Parser** | Text-to-scene placement | DistilBERT NER + Architect Transformer | *Separate repo* |
 | **Whisper STT** | Voice transcription | whisper-small-en (CTranslate2, int8) | *Separate repo* |
 | **Sprite Tweener** | Frame interpolation | RIFE-RGBA (TorchScript) | [spritestack-tweener](https://github.com/Azjob21/spritestack-tweener) |
